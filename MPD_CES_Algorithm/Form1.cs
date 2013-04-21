@@ -16,5 +16,10 @@ namespace MPD_CES_Algorithm
         {
             InitializeComponent();
         }
+
+        private void button_start_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
