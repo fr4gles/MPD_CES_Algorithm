@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPD_CES_Algorithm", "MPD_CES_Algorithm\MPD_CES_Algorithm.csproj", "{20A3ED2F-7732-43A2-90FE-69E7088FF1B0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPD_CES_Algorithm", "MPD_CES_Algorithm\MPD_CES_Algorithm.csproj", "{C378C254-2260-4621-B7B8-E4C3012882B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{20A3ED2F-7732-43A2-90FE-69E7088FF1B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{20A3ED2F-7732-43A2-90FE-69E7088FF1B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{20A3ED2F-7732-43A2-90FE-69E7088FF1B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{20A3ED2F-7732-43A2-90FE-69E7088FF1B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C378C254-2260-4621-B7B8-E4C3012882B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C378C254-2260-4621-B7B8-E4C3012882B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C378C254-2260-4621-B7B8-E4C3012882B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C378C254-2260-4621-B7B8-E4C3012882B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
