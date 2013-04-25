@@ -7,13 +7,13 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace MPD_CES_Algorithm
 {
-    public partial class Form1 : Form
+    public partial class MainWindow : Form
     {
         //        private Int32 UID = 0;
         private CES_Algorithm cesAlgorithm;
         private List<Color> colors;
 
-        public Form1()
+        public MainWindow()
         {
             InitializeComponent();
 

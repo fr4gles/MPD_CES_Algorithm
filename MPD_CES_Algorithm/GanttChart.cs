@@ -111,6 +111,7 @@ namespace MPD_CES_Algorithm
                 Label = task.Number.ToString(CultureInfo.InvariantCulture),
                 CustomProperties = "DrawSideBySide=False",
                 ToolTip = "p = " + task.P + ", d = " + task.D + ", T = " + task.T,
+                AxisLabel = "CPU"
             };
             MyChart.Series.Add(s);
         }
