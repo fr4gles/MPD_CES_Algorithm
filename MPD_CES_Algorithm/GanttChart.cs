@@ -49,7 +49,7 @@ namespace MPD_CES_Algorithm
             MyChart.Series.Clear();
             var maxT = ObliczMaxT();
 
-            TaskList = TaskList.OrderBy(taks => taks.D).ThenByDescending(task => task.P).ToList();
+            //TaskList = TaskList.OrderBy(taks => taks.D).ThenByDescending(task => task.P).ToList();
 
             foreach (var task in TaskList)
                 task.IloscPowtorzen = maxT/task.T;
