@@ -23,6 +23,8 @@ namespace MPD_CES_Algorithm
         {
             InitializeComponent();
 
+            colors = new List<Color>();
+
             GenerujWartosciPoczatkowe();
         }
 
@@ -64,8 +66,6 @@ namespace MPD_CES_Algorithm
             if (cesAlgorithm != null)
                 cesAlgorithm.ClearObj();
 
-            cesAlgorithm = null;
-
             cesAlgorithm = new CES_Algorithm();
 
 
@@ -80,8 +80,14 @@ namespace MPD_CES_Algorithm
                 cesAlgorithm.TaskList.Add(task);
             }
 
-
-            cesAlgorithm.Go();
+            try
+            {
+                cesAlgorithm.Go();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);              
+            }
 
             AddSeries();
 
@@ -99,6 +105,8 @@ namespace MPD_CES_Algorithm
             //
             //
             //            btnZapisz.Enabled = true;
+
+
         }
 
         private void AddSeries()
