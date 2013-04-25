@@ -9,10 +9,12 @@ namespace MPD_CES_Algorithm
     class CES_Algorithm
     {
         public List<Task> TaskList;
+        public Int32 MainCycleDuration;
 
-        public CES_Algorithm()
+        public CES_Algorithm(Int32 mcd)
         {
             TaskList = new List<Task>();
+            MainCycleDuration = mcd;
         }
 
         public void ClearObj()
@@ -26,10 +28,27 @@ namespace MPD_CES_Algorithm
             if (TaskList == null)
                 throw new NullReferenceException("BŁĄD! lista tasków jest niezainicjalizowana ;( ");
 
+            if ((MainCycleDuration % NWD()) != 0)
+                throw new Exception("BŁĄD! Zła wartość głównego cyklu ...!");
+
             if (!SprawdzNWW())
                 throw new Exception("BŁĄD! któryś z elementów nie spełnia założenia NWW!");
 
+        }
 
+        private int NWD()
+        {
+            var numbers = new int[TaskList.Count];
+
+            for (var i = 0; i < TaskList.Count; ++i)
+                numbers[i] = TaskList[i].T;
+
+            return numbers.Aggregate(NWD);
+        }
+
+        private int NWD(int a, int b)
+        {
+            return b == 0 ? a : NWD(b, a % b);
         }
 
         private Boolean SprawdzNWW()

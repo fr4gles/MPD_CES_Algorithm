@@ -30,9 +30,10 @@ namespace MPD_CES_Algorithm
 
         private void GenerujWartosciPoczatkowe()
         {
-            dataGridView.Rows.Add(new object[] { "2", "1", "2" });
-            dataGridView.Rows.Add(new object[] { "3", "1", "2" });
-            dataGridView.Rows.Add(new object[] { "4", "2", "3" });
+            dataGridView.Rows.Add(new object[] { "20", "2", "15" });
+            dataGridView.Rows.Add(new object[] { "20", "6", "15" });
+            dataGridView.Rows.Add(new object[] { "40", "2", "20" });
+            dataGridView.Rows.Add(new object[] { "80", "7", "30" });
 
             setRowNumber(dataGridView);
         }
@@ -66,7 +67,7 @@ namespace MPD_CES_Algorithm
             if (cesAlgorithm != null)
                 cesAlgorithm.ClearObj();
 
-            cesAlgorithm = new CES_Algorithm();
+            cesAlgorithm = new CES_Algorithm(Int32.Parse(numericUpDown_mainCycle.Value.ToString()));
 
 
             for (var i = 0; i < dataGridView.Rows.Count - 1; i++)
@@ -75,7 +76,7 @@ namespace MPD_CES_Algorithm
                 var pVal = Int32.Parse(dataGridView.Rows[i].Cells[1].Value.ToString());
                 var dVal = Int32.Parse(dataGridView.Rows[i].Cells[2].Value.ToString());
 
-                var task = new Task { T = tVal, P = pVal, D = dVal, Color = GetFreeColor() };
+                var task = new Task { Number = Int32.Parse(dataGridView.Rows[i].HeaderCell.Value.ToString()), T = tVal, P = pVal, D = dVal, Color = GetFreeColor() };
 
                 cesAlgorithm.TaskList.Add(task);
             }
@@ -86,61 +87,41 @@ namespace MPD_CES_Algorithm
             }
             catch (Exception error)
             {
-                MessageBox.Show(error.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);              
+                MessageBox.Show(error.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
-            AddSeries();
+//            AddSeries();
 
-            //            var ganttChart = new GanttChart(ref chart1, mcnaughton.ProcessorsList);
-            //            ganttChart.MakeChart();
-            //
-            //            chart1.ChartAreas[0].AxisY.Maximum = McNaughtonAlgorithm.Cmax + 1;
-            //            //            chart1.ChartAreas[0].AxisX.Maximum = mcnaughton.ProcessorsList.Count;
-            //            chart1.ChartAreas[0].AxisX.Minimum = -1;
-            //
-            //            stopwatch.Stop();
-            //
-            //            PrepareInfoBox(ref mcnaughton, stopwatch.Elapsed);
-            //            PrepareTitle();
-            //
-            //
-            //            btnZapisz.Enabled = true;
+            var ganttChart = new GanttChart(ref chart1, cesAlgorithm.TaskList);
+            
 
-
-        }
-
-        private void AddSeries()
-        {
-            chart1.Series.Clear();
-            var i = 0;
-            for (; i < cesAlgorithm.TaskList.Count; ++i)
+            try
             {
-                var s = new Series
-                {
-                    Name = i.ToString(CultureInfo.InvariantCulture),
-                    ChartType = SeriesChartType.RangeBar,
-                    Color = cesAlgorithm.TaskList[i].Color,
-                    BorderColor = Color.Black,
-                    BorderWidth = 2,
-                    MarkerStep = 1,
-                    CustomProperties = "DrawSideBySide=False",
-                    //                    ToolTip = "Czas trwania zadania: " + cesAlgorithm.TaskList[i],
-                    AxisLabel = "id: " + i.ToString(CultureInfo.InvariantCulture)
-                };
-                chart1.Series.Add(s);
+                ganttChart.MakeChart();
             }
-            chart1.Series.Add(new Series
+            catch (Exception error)
             {
-                Name = (++i).ToString(CultureInfo.InvariantCulture),
-                ChartType = SeriesChartType.RangeBar,
-                Color = GetFreeColor(),
-                BorderColor = Color.Black,
-                BorderWidth = 2,
-                MarkerStep = 1,
-                CustomProperties = "DrawSideBySide=False",
-                //                ToolTip = "Czas trwania zadania: " + cesAlgorithm.TaskList[i].,
-                AxisLabel = "id: " + i.ToString(CultureInfo.InvariantCulture)
-            });
+                MessageBox.Show(error.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+//            var ganttChart = new GanttChart(ref chart1, mcnaughton.ProcessorsList);
+//            ganttChart.MakeChart();
+//            
+//            chart1.ChartAreas[0].AxisY.Maximum = McNaughtonAlgorithm.Cmax + 1;
+//            //            chart1.ChartAreas[0].AxisX.Maximum = mcnaughton.ProcessorsList.Count;
+//            chart1.ChartAreas[0].AxisX.Minimum = -1;
+//            
+//            stopwatch.Stop();
+//            
+//            PrepareInfoBox(ref mcnaughton, stopwatch.Elapsed);
+//            PrepareTitle();
+//            
+//            
+//            btnZapisz.Enabled = true;
+
+
         }
 
         public Color GetFreeColor()
