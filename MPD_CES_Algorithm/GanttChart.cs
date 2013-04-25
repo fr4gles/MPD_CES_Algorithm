@@ -23,17 +23,33 @@ namespace MPD_CES_Algorithm
             MyChart = myChart;
 
             MyChart.Visible = true;
+
+            MyChart.AutoSize = true;
+
+            // Set automatic zooming
+            MyChart.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
+            MyChart.ChartAreas[0].AxisY.ScaleView.Zoomable = true;
+
+            // Set automatic scrolling 
+            MyChart.ChartAreas[0].CursorX.AutoScroll = true;
+            MyChart.ChartAreas[0].CursorY.AutoScroll = true;
+
+            // Allow user selection for Zoom
+            MyChart.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
+            MyChart.ChartAreas[0].CursorY.IsUserSelectionEnabled = true;
+
             NumZad = 0;
         }
 
-        public void MakeChart()
+        public String MakeChart()
         {
+
+            List<String> listString = new List<string>();
+
             MyChart.Series.Clear();
             var maxT = ObliczMaxT();
 
             TaskList = TaskList.OrderBy(taks => taks.D).ThenByDescending(task => task.P).ToList();
-
-            //            var tmpTaskList = new List<Task>(TaskList);
 
             foreach (var task in TaskList)
                 task.IloscPowtorzen = maxT/task.T;
@@ -44,24 +60,25 @@ namespace MPD_CES_Algorithm
             var sum = 0;
             for (int i = 0; i < iloscCykli; ++i)
             {
+                listString.Add("Cykl: "+i+" \n");
                 listaCykli.Add(sum);
                 sum += TaskList[NumZad - 1].T;
             }
-
-            //            for(int i=0;i<listaCykli.Count;++i)
-            //            {
-            // cykl pierwszy
 
             foreach (var task in TaskList)
             {
                 var increment = listaCykli.Count/task.IloscPowtorzen;
                 for (int i = 0; i < listaCykli.Count; i += increment)
                 {
+                    listString[i] += "Zadanie: "+task.Number
+                        +"   (p = "+task.P+
+                    ", d = " + task.D + ", T = "+task.T+")\n";
+
                     var start = listaCykli[i];
-//                    if ((task.D < start) && (i == 0))
-//                        throw new Exception(
-//                            "BŁĄD! Zbyt duże czasy wykonań zadań! Zadanie nie może zostać wykonane w zadanym ograniczeniu czasowym!" +
-//                            "\nZADANIE NR: " + task.Number + " (p =" + task.P + ", d = )" + task.D + ", T = " + task.T + ")");
+                    if ((task.D < start) && (i == 0))
+                        throw new Exception(
+                            "BŁĄD! Zbyt duże czasy wykonań zadań! Zadanie nie może zostać wykonane w zadanym ograniczeniu czasowym!" +
+                            "\nZADANIE NR: " + task.Number + " (p =" + task.P + ", d = )" + task.D + ", T = " + task.T + ")");
 
                     AddSeries(task, i);
                     var end = start + task.P;
@@ -71,88 +88,14 @@ namespace MPD_CES_Algorithm
                 }
             }
 
-            MyChart.Series.Add(
-                new Series
-                    {
-                        ChartType = SeriesChartType.Line,
-                        Color = Color.Black,
-                        //                BorderColor = Color.Black,
-                        //                BorderWidth = 2,
-                        MarkerStep = 1,
-                        //                Label = task.Number.ToString(CultureInfo.InvariantCulture),
-                        //                CustomProperties = "DrawSideBySide=False",
-                        //                ToolTip = "p = " + task.P + ", d = " + task.D + ", T = " + task.T,
-                    });
+            var result = "";
 
-            MyChart.Series[0].Points.AddXY(20, 0);
-            MyChart.Series[0].Points.AddXY(20, 2);
+            foreach (var v in listString)
+            {
+                result += v + "\n";
+            }
 
-
-            //            }
-
-
-
-            //            var start = 0;
-            //            var j = 0;
-            //            foreach (var task in TaskList)
-            //            {
-            ////                if (task.D < start)
-            ////                    throw new Exception("BŁĄD! Zbyt duże czasy wykonań zadań! Zadanie nie może zostać wykonane w zadanym ograniczeniu czasowym!" +
-            ////                                                                                "\nZADANIE NR: " + task.Number + " (p =" + task.P + ", d = )" + task.D + ", T = " + task.T + ")");
-            //
-            //
-            //                if (task.IloscPowtorzen <= 1)
-            //                {
-            //                    AddSeries(task, 0);
-            //                    var end = start + task.P;
-            //                    MyChart.Series[MyChart.Series.Count - 1].Points.AddXY(0, new object[] { start, end });
-            //                    start = end;
-            //                }
-            //                else
-            //                {
-            //                    var tmpStart = start;
-            //                    for (int i = 0; i < task.IloscPowtorzen; ++i)
-            //                    {
-            //                        if (i == 0)
-            //                        {
-            //                            AddSeries(task, 0);
-            //                            var tmpEnd = tmpStart + task.P;
-            //                            MyChart.Series[MyChart.Series.Count - 1].Points.AddXY(0, new object[] { tmpStart, tmpEnd });
-            //                            tmpStart = tmpEnd;
-            //                        }
-            //                        else
-            //                        {
-            //                            tmpStart = task.T*i;
-            //                            AddSeries(task, i);
-            //                            var end = tmpStart + task.P;
-            //                            MyChart.Series[MyChart.Series.Count-1].Points.AddXY(0, new object[] {tmpStart, end});
-            //                            tmpStart = end;
-            //                        }
-            //                        j = i;
-            //                    }
-            //                    start = tmpStart;
-            //                }
-            //            }
-
-            //            int j = 0;
-            //            int tmp = MyChart.Series.Count;
-            //            foreach (var p in ProcessorsList)
-            //            {
-            //                var start = 0.0;
-            //
-            //                foreach (var t in p.ProcessorTasksList)
-            //                {
-            //                    if (j < tmp - 1)
-            //                    {
-            //                        var end = start + t.Duration;
-            //                        MyChart.Series[j].Points.AddXY(p.ProcessorNumber, new object[] { start, end });
-            //                        MyChart.Series[j].Points[MyChart.Series[j].Points.Count - 1].Label = t.Name;
-            //                        start = end;
-            //                        j++;
-            //                    }
-            //                }
-            //            }
-
+            return result;
         }
 
         private void AddSeries(Task task, int cykl)

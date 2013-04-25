@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -94,33 +88,16 @@ namespace MPD_CES_Algorithm
 //            AddSeries();
 
             var ganttChart = new GanttChart(ref chart1, cesAlgorithm.TaskList);
-            
 
             try
             {
-                ganttChart.MakeChart();
+                richTextBox.Text = ganttChart.MakeChart();
             }
             catch (Exception error)
             {
                 MessageBox.Show(error.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-//            var ganttChart = new GanttChart(ref chart1, mcnaughton.ProcessorsList);
-//            ganttChart.MakeChart();
-//            
-//            chart1.ChartAreas[0].AxisY.Maximum = McNaughtonAlgorithm.Cmax + 1;
-//            //            chart1.ChartAreas[0].AxisX.Maximum = mcnaughton.ProcessorsList.Count;
-//            chart1.ChartAreas[0].AxisX.Minimum = -1;
-//            
-//            stopwatch.Stop();
-//            
-//            PrepareInfoBox(ref mcnaughton, stopwatch.Elapsed);
-//            PrepareTitle();
-//            
-//            
-//            btnZapisz.Enabled = true;
-
 
         }
 
@@ -149,9 +126,6 @@ namespace MPD_CES_Algorithm
             if ((dataGridView.CurrentRow != null) && (dataGridView != null))
             {
                 dataGridView.CurrentRow.HeaderCell.Value = String.Format("{0}", dataGridView.CurrentRow.Index + 1); ;
-
-                //                if (generowanie)
-                //                    btnStart.PerformClick();
             }
         }
 
@@ -209,9 +183,20 @@ namespace MPD_CES_Algorithm
             if (!er)
                 dataGridView.CurrentCell.Value = 0.ToString();
 
-            var tVal = Int32.Parse(dataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
-            var dVal = Int32.Parse(dataGridView.Rows[e.RowIndex].Cells[2].Value.ToString());
-            var pVal = Int32.Parse(dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString());
+            var tVal = 0;
+            var dVal = 0;
+            var pVal = 0;
+            try
+            {
+                tVal = Int32.Parse(dataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
+                dVal = Int32.Parse(dataGridView.Rows[e.RowIndex].Cells[2].Value.ToString());
+                pVal = Int32.Parse(dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString());
+            }
+            catch (Exception)
+            {
+                return;
+            }
+
             switch (e.ColumnIndex)
             {
                 case 0:

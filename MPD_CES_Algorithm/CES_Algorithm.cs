@@ -57,10 +57,18 @@ namespace MPD_CES_Algorithm
 
             foreach (var task in TaskList)
             {
-                if (NWW(task.T, TaskList[TaskList.Count - 1].T) != TaskList[TaskList.Count - 1].T)
+                if (NWW(task.T, TaskList[TaskList.Count - 1].T) > ObliczMaxT()/*TaskList[TaskList.Count - 1].T*/)
                     result = false;
             }
             return result;
+        }
+
+        private int ObliczMaxT()
+        {
+            var max = 0;
+            foreach (var task in TaskList)
+                max = Math.Max(task.T, max);
+            return max;
         }
 
         private static int NWW(int a, int b)

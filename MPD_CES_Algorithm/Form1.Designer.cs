@@ -37,6 +37,8 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.numericUpDown_mainCycle = new System.Windows.Forms.NumericUpDown();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,18 +46,17 @@
             this.numericUpDown_min = new System.Windows.Forms.NumericUpDown();
             this.button_generateRndValues = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox = new System.Windows.Forms.RichTextBox();
             this.button_saveChart = new System.Windows.Forms.Button();
             this.button_start = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDown_iloscZadan = new System.Windows.Forms.NumericUpDown();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDown_mainCycle = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_mainCycle)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_max)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_min)).BeginInit();
@@ -63,7 +64,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_iloscZadan)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_mainCycle)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -135,6 +135,33 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Opcje podstawowe";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(25, 92);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Cykl główny:";
+            // 
+            // numericUpDown_mainCycle
+            // 
+            this.numericUpDown_mainCycle.Location = new System.Drawing.Point(95, 90);
+            this.numericUpDown_mainCycle.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_mainCycle.Name = "numericUpDown_mainCycle";
+            this.numericUpDown_mainCycle.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.numericUpDown_mainCycle.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown_mainCycle.TabIndex = 7;
+            this.numericUpDown_mainCycle.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
             // 
             // groupBox5
             // 
@@ -221,7 +248,7 @@
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox4.Controls.Add(this.richTextBox1);
+            this.groupBox4.Controls.Add(this.richTextBox);
             this.groupBox4.Location = new System.Drawing.Point(6, 201);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(231, 120);
@@ -229,16 +256,16 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Szczegółowe wyniki";
             // 
-            // richTextBox1
+            // richTextBox
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.richTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(6, 19);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(219, 95);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "";
+            this.richTextBox.Location = new System.Drawing.Point(6, 19);
+            this.richTextBox.Name = "richTextBox";
+            this.richTextBox.Size = new System.Drawing.Size(219, 95);
+            this.richTextBox.TabIndex = 4;
+            this.richTextBox.Text = "";
             // 
             // button_saveChart
             // 
@@ -319,33 +346,6 @@
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 92);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Cykl główny:";
-            // 
-            // numericUpDown_mainCycle
-            // 
-            this.numericUpDown_mainCycle.Location = new System.Drawing.Point(95, 90);
-            this.numericUpDown_mainCycle.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown_mainCycle.Name = "numericUpDown_mainCycle";
-            this.numericUpDown_mainCycle.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.numericUpDown_mainCycle.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown_mainCycle.TabIndex = 7;
-            this.numericUpDown_mainCycle.Value = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -361,6 +361,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_mainCycle)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_max)).EndInit();
@@ -369,7 +370,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_iloscZadan)).EndInit();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_mainCycle)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -386,7 +386,7 @@
         private System.Windows.Forms.Button button_start;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericUpDown_iloscZadan;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBox;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label3;
