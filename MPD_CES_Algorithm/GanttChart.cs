@@ -88,14 +88,7 @@ namespace MPD_CES_Algorithm
                 }
             }
 
-            var result = "";
-
-            foreach (var v in listString)
-            {
-                result += v + "\n";
-            }
-
-            return result;
+            return listString.Aggregate("", (current, v) => current + (v + "\n"));
         }
 
         private void AddSeries(Task task, int cykl)
